@@ -1,0 +1,18 @@
+on: workflow_dispatch
+
+jobs:
+  create-tarball:
+    runs-on: macos-latest
+
+    steps:
+      - run: |
+          brew install glib
+
+          export FOLDER=/usr/local/Cellar/glib/`ls /usr/local/Cellar/glib`/bin/
+          export CWD=`pwd`
+          cd $FOLDER && tar -zcvf $CWD/gdbus.tgz gdbus* && cd -
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: |
+            gdbus.tgz
