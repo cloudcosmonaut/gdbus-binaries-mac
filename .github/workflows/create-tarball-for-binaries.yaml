@@ -6,11 +6,11 @@ jobs:
 
     steps:
       - run: |
-          brew install glib
+          brew install dbus
 
-          export FOLDER=/usr/local/Cellar/glib/`ls /usr/local/Cellar/glib`/bin/
+          export FOLDER=/usr/local/Cellar/dbus/`ls /usr/local/Cellar/dbus`/bin/
           export CWD=`pwd`
-          cd $FOLDER && tar -zcvf $CWD/gdbus.tgz gdbus* && cd -
+          cd $FOLDER && tar -zcvf $CWD/gdbus.tgz * && cd -
 
       - uses: actions/upload-artifact@v2
         with:
